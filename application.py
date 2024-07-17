@@ -109,10 +109,9 @@ def home():
             
 
             user = users_collection.find_one({'Email': email})
-            print(user)
             
             # Print session data for debugging
-            logging.debug('Session data after login: %s', session)
+            #logging.debug('Session data after login: %s', session)
 
             if user and check_password_hash(user['Password'], password):
                 # Convert the ObjectId to string before storing in session
@@ -182,7 +181,7 @@ def dashboard():
                 selected_class = re.sub(r'\D', '', selected_class_temp)
         
                 # Process selected subject and class
-                print(f"Selected Subject: {selected_subject}, Class: {selected_class}")
+                #print(f"Selected Subject: {selected_subject}, Class: {selected_class}")
         
                 students = students_collection.find({'Class': selected_class})
                 
@@ -209,7 +208,7 @@ def dashboard():
                                 'Remarks': None,
                                 'Report': None
                             }
-                            print(student_details)
+                            #print(student_details)
                             subject_collection.insert_one(student_details)
                     
                     
@@ -325,7 +324,7 @@ def student_evaluate():
 @app.route('/download-report', methods=['GET'])
 def download_report():
     student_id = request.args.get('studentId')
-    print(student_id)
+    #print(student_id)
     
     if student_id:
         # Retrieve the PDF report file from the database based on the student ID
@@ -351,7 +350,7 @@ def live_stream():
         user = session['user']    
         # Retrieve selected_row_data from session using the correct key
         selected_row_data = session.get('selected_row_data', {})
-        print('Session for live-stream:', selected_row_data)
+        #print('Session for live-stream:', selected_row_data)
         
         return render_template("live_stream.html", user=user, selected_row_data=selected_row_data)
     
@@ -366,7 +365,7 @@ def file_upload():
         
         # Retrieve selected_row_data from session
         selected_row_data = session.get('selected_row_data', {})
-        print('session for file-upload: ',selected_row_data)
+        #print('session for file-upload: ',selected_row_data)
         
         if request.method == 'POST' and 'file' in request.files:
             video_file = request.files['file']
@@ -391,7 +390,7 @@ def file_upload():
 def processing():
     video_path = request.args.get('video_path')
     selected_row_data = session.get('selected_row_data', {})  # Initialize selected_row_data
-    print("session data for processing:", selected_row_data)
+    #print("session data for processing:", selected_row_data)
     if video_path not in processing_videos:
 
         # Start processing only if the video is not being processed
@@ -424,12 +423,12 @@ def process_uploaded_video(video_path, selected_row_data):
             frequency = audio_result['frequency']
             amplitude = audio_result['average_amplitude']
             gender = selected_row_data['Gender'].lower()
-            print(gender)
+            #print(gender)
 
             # Evaluate presentation
             presentation_result = evaluate_presentation(emotion, vader_sentiment, speech_rate, frequency, gender, amplitude)
             
-            print(presentation_result)
+            #print(presentation_result)
 
             # Store the presentation result
             processed_videos[video_path] = presentation_result
@@ -448,7 +447,7 @@ def result():
     if request.method == 'POST':
         # Retrieve selected_row_data from session
         selected_row_data = session.get('selected_row_data', {})
-        print("Session data for result:", selected_row_data)
+        #print("Session data for result:", selected_row_data)
         
         # Extract required information from selected_row_data
         try:
@@ -463,26 +462,26 @@ def result():
         
         # Retrieve the student document based on class and roll number
         student = subject_collection.find_one({'Class': selected_class, 'Roll_Number': roll_number})
-        print(student)
+        #print(student)
         
         if student:
                 
             # Retrieve data from the POST request
             data = request.get_json()
             confidence_score = data.get('confidenceScore')
-            print(confidence_score)
+            #print(confidence_score)
             remarks = data.get('remarks')
-            print(remarks)
+            #print(remarks)
             emotionScore = data.get('emotionScore')
-            print(emotionScore)
+            #print(emotionScore)
             sentimentScore = data.get('sentimentScore')
-            print(sentimentScore)
+            #print(sentimentScore)
             speechRateScore = data.get('speechRateScore')
-            print(speechRateScore)
+            #print(speechRateScore)
             frequencyScore = data.get('frequencyScore')
-            print(frequencyScore)
+            #print(frequencyScore)
             amplitudeScore = data.get('amplitudeScore')
-            print(amplitudeScore)
+            #print(amplitudeScore)
 
             # Update student document with evaluation results
             student['DOE'] = datetime.date.today().isoformat()

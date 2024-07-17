@@ -212,13 +212,13 @@ let selectedClass = null;
 // Function to handle the click event on subject containers
 function handleSubjectContainerClick(container) {
     selectedSubject = container.querySelector('h3').textContent;
-    console.log('Selected Subject:', selectedSubject);
+    //console.log('Selected Subject:', selectedSubject);
 }
 
 // Function to handle the click event on class containers
 function handleClassContainerClick(container) {
     selectedClass = container.querySelector('h3').textContent;
-    console.log('Selected Class:', selectedClass);
+    //console.log('Selected Class:', selectedClass);
 }
 
 // Get all the containers under the box-info class for subjects
@@ -277,7 +277,7 @@ function sendCombinedDataToBackend() {
         })
         .then(response => {
             if (response.ok) {
-                console.log('Form submission successful');
+                //console.log('Form submission successful');
                 // Redirect to the student evaluation page after successful submission
                 window.location.href = '/student-evaluate';
             } else {
@@ -294,7 +294,7 @@ function sendCombinedDataToBackend() {
 
 // Add event listener to the "Submit Selection" button
 document.querySelector('.btn-submit').addEventListener('click', function() {
-    console.log('Submit button clicked!');
+    //console.log('Submit button clicked!');
     // Ensure handleSubmitForm function is called when the button is clicked
     sendCombinedDataToBackend();
 });

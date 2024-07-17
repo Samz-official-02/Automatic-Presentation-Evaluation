@@ -119,7 +119,7 @@ function downloadPDFReport(student) {
 
             if (rowDataString) {
                 selectedRowData = JSON.parse(rowDataString);
-                console.log('Selected Row Data:', selectedRowData);
+                //console.log('Selected Row Data:', selectedRowData);
             } else {
                 selectedRowData = {}; // Reset selectedRowData if no valid data-id attribute found
                 console.log('No row selected');
@@ -134,7 +134,7 @@ function downloadPDFReport(student) {
             const rowDataString = selectedRadioButton.getAttribute('data-id');
             if (rowDataString) {
                 const selectedRowData = JSON.parse(rowDataString);
-                console.log('Selected Row Data:', selectedRowData);
+                //console.log('Selected Row Data:', selectedRowData);
     
                 // Determine the redirect endpoint based on the action
                 let redirectEndpoint;
@@ -163,7 +163,7 @@ function downloadPDFReport(student) {
                     return response.json();
                 })
                 .then(data => {
-                    console.log('Response from /student-evaluate:', data);
+                    //console.log('Response from /student-evaluate:', data);
                     // Redirect to the appropriate page based on the button action
                     if (redirectEndpoint) {
                         window.location.href = redirectEndpoint;
@@ -207,7 +207,7 @@ function downloadPDFReport(student) {
         handleButtonClick('fileUpload');
     });
 
-    console.log('Radio button setup complete. Listening for changes...');
+    //console.log('Radio button setup complete. Listening for changes...');
 
     // TOGGLE SIDEBAR
     const menuBar = document.querySelector('#content nav .bx.bx-menu');
