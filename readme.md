@@ -47,7 +47,7 @@ By implementing the Automatic Presentation Evaluation System, educational instit
 
 ## Cloud Deployment Link
 
-[Automatic Presentation Evaluation](https://automatic-presentation-evaluation.onrender.com)
+[Automatic Presentation Evaluation](https://automatic-presentation-evaluation-s2jj.onrender.com)
 
 
 ## Features
